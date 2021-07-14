@@ -1,0 +1,15 @@
+---
+- name: test-playbook | Test sftp-server role
+  hosts: all
+  become: yes
+  become_user: root
+  vars:
+    sftp_allow_passwords: true
+    sftp_users:
+      - name: tb_user
+        password: "$1$salty$vtct8F0UEoxbJDI8O2Kwr1"
+        shell: False
+        sftp_directories:
+          - upload
+  roles:
+    - johanmeiring.sftp-server

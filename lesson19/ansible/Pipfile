@@ -1,0 +1,20 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+ansible = "==2.9.20"
+boto3 = "==1.17.111"
+jinja2 = "==2.11.3"
+molecule = "==3.3.4"
+molecule-vagrant = "*"
+importlib-metadata = "==3.10.1"
+python-vagrant = "*"
+pytest = "*"
+pytest-testinfra = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.7"
