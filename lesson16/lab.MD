@@ -10,12 +10,14 @@
 ```
 - конфигурирует пользователя под которым будем работать
 ```
-    # если у вас несколько аккаунтов, рекоммендуется назначать пользователя индивидуально для каждого проекта, без ключа --global
+    # если у вас несколько аккаунтов, рекоммендуется назначать пользователя
+    # индивидуально для каждого проекта, без ключа --global
     git config --global user.name "Vasil Chumak"
     git config --global user.email vasil.chumak@gmail.com
-    # email должен совпадать с вашей учетной записью GitHub, для проверки полномочий на доступ в проект
+    # email должен совпадать с вашей учетной записью GitHub, 
+    # для проверки полномочий на доступ в проект
 ```
-- Создадим каталог hw_18 и будет выполнять все действия в рамках данного каталога
+- Создадим каталог hw_15 и будет выполнять все действия в рамках данного каталога
 
 ## Базовые действия
 
@@ -40,7 +42,9 @@
 ```
     echo "Odessa is a city in the south of the country" >> file.txt
     git diff # непроиндексированные изменения, сравните с git diff --cached
-    git commit -am "Info about Odessa" # удалось ли нам сделать комит без добавления в Index или в Index мы все же добавляем изменения перед комитом?
+    git commit -am "Info about Odessa" 
+    # удалось ли нам сделать комит без добавления в Index или в Index 
+    # мы все же добавляем изменения перед комитом?
     git log # проверяем в истории, сделали ли мы комит
     # Попробуем обновить коммит, дополнительными действиями
     echo "Kiev is a city in the north of the country" >> file.txt
@@ -61,9 +65,9 @@
 ```
 - Должен возникнуть конфликт из-за ранее созданого 3 коммита
 ```
-    ➜  hw_18 git:(master) git revert HEAD~1
-    Auto-merging hw_18/file.txt
-    CONFLICT (content): Merge conflict in hw_18/file.txt
+    ➜  hw_15 git:(master) git revert HEAD~1
+    Auto-merging hw_15/file.txt
+    CONFLICT (content): Merge conflict in hw_15/file.txt
     error: could not revert 2de53e1... I like Kiev same as Odessa too:
     hint: after resolving the conflicts, mark the corrected paths
     hint: with 'git add <paths>' or 'git rm <paths>'
@@ -100,7 +104,9 @@
 ```
     git add file.txt
     git revert --continue
-    git log # Как мы видим, revert не меняет историю, а вносит изменения относительно коммитами который мы захотели убрать.
+    git log 
+    # Как мы видим, revert не меняет историю, а вносит изменения относительно коммитами который 
+    # мы захотели убрать.
     git show
 ```
 ## Работа с gitignore
@@ -196,7 +202,8 @@ nothing to commit, working tree clean
 
 - Добавляем remote в Ваш текущий локальный проект
 ```
-    git remote add origin git@github.com:hillel-devops-082022/hw_<YourUserName>.git # где <YourUserName> - имя Вашего GitHub аккаунта
+    git remote add origin git@github.com:hillel-devops-082022/hw_<YourUserName>.git
+    # где <YourUserName> - имя Вашего GitHub аккаунта
 ```
 - Отправим все ветки в remote
 ```
@@ -216,4 +223,4 @@ nothing to commit, working tree clean
 
 - Хорошей практикой является создание описания чего либо Вами сделанного в формате MarkDown в файле README.MD
 - README.MD может быть общий в корне проекта или индивидуальным в каталогах
-- Создайте README.MD с описание Ваших действий в подкаталоге hw_18.
+- Создайте README.MD с описание Ваших действий в подкаталоге hw_15.
