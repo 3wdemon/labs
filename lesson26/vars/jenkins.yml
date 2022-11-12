@@ -26,8 +26,15 @@ jenkins_plugins:
 #  - blueocean
 #  - name: influxdb
 #    version: "1.12.1"
-  - docker
-  - CloudBees Docker Build and Publish
+  - docker-plugin
+  - docker-workflow
+  - docker-build-publish
+  - git
+  - git-parameter
+  - github
+  - pipeline-github-lib
+  - github-branch-source
+  - multibranch-scan-webhook-trigger
 
 jenkins_plugins_state: present
 jenkins_plugin_updates_expiration: 86400

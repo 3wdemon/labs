@@ -1,6 +1,6 @@
 provider "aws" {
   region = "us-west-2"
-  profile = "sergeykudelin"
+  profile = "sergeykudelin-dev"
 }
 
 locals {
@@ -85,7 +85,7 @@ module "ec2_elk" {
   subnet_id                   = tolist(data.aws_subnet_ids.all.ids)[0]
   vpc_security_group_ids      = [module.sg_elk.security_group_id]
   associate_public_ip_address = true
-  key_name                    = "serhiikudelin"
+  key_name                    = "aws_hillel"
 
   user_data_base64 = base64encode(local.user_data)
 

@@ -1,0 +1,20 @@
+# https://prometheus.io/docs/prometheus/latest/querying/basics/
+
+# CPU
+irate(node_cpu{job="node"}[5m])
+100 - (avg by (instance) (irate(node_cpu{job="node",mode="idle"}[5m])) * 100)
+
+# Storage
+100 - ((node_filesystem_avail{mountpoint="/",fstype="ext4"} * 100) / node_filesystem_size{mountpoint="/",fstype="ext4"})
+
+# Service Discovery
+
+  - job_name: 'node'
+    ec2_sd_configs:
+      - region: us-west-2
+        access_key: AKIATAHPZ2RZBWI3SMX6
+        secret_key: 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
+        port: 9100
+
+# /etc/default/prometheus
+# curl -X POST http://localhost:9090/-/reload

@@ -1,3 +1,16 @@
+# Terraform
+
+## Оформление 
+
+- Создаем новую ветку в репозитории с именем hw-19_terraform
+
+- Создадим каталог с именем terraform в корне нашего репозитория
+
+## Создадим файл main.tf со следующим кодом
+
+### Variables
+
+```
 variable "aws_region" {
   default = "us-west-2"
 }
@@ -22,7 +35,11 @@ variable "tags" {
     Environment = "dev"
   }
 }
+```
 
+### VPC
+
+```
 resource "aws_vpc" "default_vpc" {
   cidr_block = var.cidr
   tags       = var.tags
@@ -39,7 +56,11 @@ resource "aws_subnet" "private" {
   cidr_block = var.cidr_private
 
 }
+```
 
+### Create Internet Gateway
+
+```
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.default_vpc.id
 }
@@ -54,7 +75,11 @@ resource "aws_nat_gateway" "default" {
   subnet_id     = aws_subnet.public.id
   depends_on    = [aws_eip.ip_pub]
 }
+```
 
+### Route Table for Public Network
+
+```
 resource "aws_route_table" "rt_public" {
   vpc_id = aws_vpc.default_vpc.id
   route {
@@ -67,7 +92,11 @@ resource "aws_route_table_association" "link_public" {
   subnet_id      = aws_subnet.public.id
   route_table_id = aws_route_table.rt_public.id
 }
+```
 
+### Route Table for Private Network
+
+```
 resource "aws_route_table" "rt_private" {
   vpc_id = aws_vpc.default_vpc.id
 }
@@ -82,7 +111,11 @@ resource "aws_route_table_association" "link_private" {
   subnet_id      = aws_subnet.private.id
   route_table_id = aws_route_table.rt_private.id
 }
+```
 
+### Create security groups
+
+```
 resource "aws_security_group" "sg_public" {
   vpc_id      = aws_vpc.default_vpc.id
   description = "Allow SSH inbound traffic"
@@ -115,7 +148,23 @@ resource "aws_security_group_rule" "rule_all" {
   protocol                 = "-1"
   source_security_group_id = aws_security_group.sg_public.id
 }
+```
 
+## Create provider
+
+```
 provider "aws" {
   region = var.aws_region
 }
+```
+
+## Результатом домашнего задания будет
+
+- Созданный Pull Request из ветки hw-19_terraform в основную ветку main (или в другую определенную основной в настройках репозитория)
+- Преподователь должен иметь возможность создать инфраструктуру на базе ваших файлов с использованием terraform
+
+## В качестве НЕОБЯЗАТЕЛЬНОГО дополнительного задания
+1. Расположите код на разным файлам, согласно лучшим практикам
+- https://www.terraform-best-practices.com/code-structure
+- https://www.terraform-best-practices.com/naming
+2. Можете описать какие ограничения или проблемы Вы видите в коде или что бы улучшили

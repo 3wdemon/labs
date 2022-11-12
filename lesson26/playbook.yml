@@ -38,7 +38,7 @@
         groups:
           - docker
         append: yes
-    - name: Ensure SELinux is set to enforcing mode
+    - name: Docker Listener
       ansible.builtin.lineinfile:
         path: /etc/systemd/system/multi-user.target.wants/docker.service
         regexp: '^ExecStart='
@@ -67,10 +67,8 @@
   become: true
   tags:
     - jenkins
-  vars:
-    jenkins_hostname: jenkins.sergeykudelin.pp.ua
-    java_packages:
-      - openjdk-11-jdk
+  vars_files:
+    - ./vars/jenkins.yml
   roles:
     - role: geerlingguy.java
     - role: geerlingguy.jenkins
