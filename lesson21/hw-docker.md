@@ -8,7 +8,7 @@
  
 ## Цель: Посмотрим решение на базе проектов под все языки\фреймворки "RealWorld" - https://github.com/gothinkster
 
-- Создаем новую ветку hw_12 в вашем репозитории https://github.com/hillel-devops-102021/hw_YourGitHubAccountName
+- Создаем новую ветку hw_19 в вашем репозитории
 
 - Загрузим одну из реализаций backend данного проекта - https://github.com/gothinkster/hapijs-realworld-example-app в каталог "backend" вашего репозитория.
 
